@@ -1,0 +1,13 @@
+[Unit]
+Description=Optolink Adapter
+After=network.target
+
+[Service]
+ExecStart=/opt/optolink/start.sh
+User=optolink
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=optolink
+
+[Install]
+WantedBy=multi-user.target
