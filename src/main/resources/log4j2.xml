@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Properties>
+    <Property name="pattern">[%t][%logger] %msg%n</Property>
+  </Properties>
+  <Appenders>
+    <Console name="stdout" target="SYSTEM_OUT"> <!-- 1 -->
+      <PatternLayout pattern="${pattern}"/>
+      <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/> <!-- 3 -->
+    </Console>
+    <Console name="stderr" target="SYSTEM_ERR"> <!-- 2 -->
+      <PatternLayout pattern="${pattern}"/>
+      <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/> <!-- 3 -->
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="INFO">
+      <AppenderRef ref="stdout"/> <!-- 4 -->
+      <AppenderRef ref="stderr"/> <!-- 4 -->
+    </Root>
+  </Loggers>
+</Configuration>
