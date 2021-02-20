@@ -13,33 +13,31 @@
  *******************************************************************************/
 package de.myandres.optolink;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Channel {
-	
-	static Logger logger = LoggerFactory.getLogger(Channel.class);
- 	
-	
+
+	private static final Logger LOG = LogManager.getLogger(Channel.class);
+
 	private String id;
 	private String description;
 	private Telegram telegram;
-	
-	Channel (Channel channel) {
-		logger.trace("Init id: '{}'", channel.getId() );
+
+	Channel(Channel channel) {
+		LOG.trace("Init id: '{}'", channel.getId());
 		this.id = channel.getId();
 		this.description = channel.getDescription();
 		this.telegram = channel.getTelegram();
 	}
-	
-	Channel (String id ) {
-		logger.trace("Init id: '{}'", id );
+
+	Channel(String id) {
+		LOG.trace("Init id: '{}'", id);
 		this.id = id;
 		this.description = null;
 		this.telegram = null;
 	}
-	
-	
+
 	public Telegram getTelegram() {
 		return telegram;
 	}
@@ -51,6 +49,7 @@ public class Channel {
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}

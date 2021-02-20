@@ -13,38 +13,39 @@
  *******************************************************************************/
 package de.myandres.optolink;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Thing {
-	 
-	static Logger logger = LoggerFactory.getLogger(Thing.class);
+
+	private static final Logger LOG = LogManager.getLogger(Thing.class);
 
 	private String type;
 	private String id;
 	private String description;
-	private Map<String,Channel> channelMap = new HashMap<String,Channel>();
-	
+	private Map<String, Channel> channelMap = new HashMap<String, Channel>();
+
 	public List<Channel> getChannelMap() {
 		return new ArrayList<Channel>(channelMap.values());
 	}
 
 	Thing(String id, String type) {
-		logger.trace("Init type: '{}' id: '{}'", type, id );
+		LOG.trace("Init type: '{}' id: '{}'", type, id);
 		channelMap.clear();
 		this.type = type;
 		this.id = id;
-		this.description = null;;
+		this.description = null;
+		;
 	}
-	
+
 	Thing(Thing thing) {
-		logger.trace("Init type: '{}' id: '{}'", thing.type, thing.id );
-		channelMap.clear();		
+		LOG.trace("Init type: '{}' id: '{}'", thing.type, thing.id);
+		channelMap.clear();
 		this.channelMap = thing.channelMap;
 		this.type = thing.type;
 		this.id = thing.id;
@@ -79,10 +80,9 @@ public class Thing {
 	public void addChannel(Channel channel) {
 		channelMap.put(channel.getId(), new Channel(channel));
 	}
-	
-	public Channel getChannel(String id) {
-		return channelMap.get(id);	
-	}
 
+	public Channel getChannel(String id) {
+		return channelMap.get(id);
+	}
 
 }

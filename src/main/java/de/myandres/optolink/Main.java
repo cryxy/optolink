@@ -13,12 +13,12 @@
  *******************************************************************************/
 package de.myandres.optolink;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
 
-	static Logger log = LoggerFactory.getLogger(Main.class);
+	private static final Logger LOG = LogManager.getLogger(Main.class);
 
 	// Central Classes, singular only!!
 	static Config config;
@@ -28,7 +28,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		log.info("Programm gestartet");
+		LOG.info("Programm gestartet");
 
 		try {
 
@@ -42,7 +42,7 @@ public class Main {
 			viessmannHandler = new ViessmannHandler(config, optolinkInterface);
 
 		} catch (Exception e) {
-			log.error("Something is wrong not init", e);
+			LOG.error("Something is wrong not init", e);
 			viessmannHandler.close();
 			optolinkInterface.close();
 			System.exit(1);
@@ -54,7 +54,7 @@ public class Main {
 			public void run() {
 				viessmannHandler.close();
 				optolinkInterface.close();
-				log.info("Programm normal terminated by Signal (Kill)");
+				LOG.info("Programm normal terminated by Signal (Kill)");
 			}
 		});
 
@@ -65,7 +65,7 @@ public class Main {
 			socketHandler.start();
 
 		} catch (Exception e) {
-			log.error("Programm abnormal terminated.", e);
+			LOG.error("Programm abnormal terminated.", e);
 		}
 
 	}
